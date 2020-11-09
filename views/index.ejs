@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="refresh" content="600" />
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.min.css'>
+    <link rel='stylesheet' href="gameplay.css">
+    <script src="socket.io.js"></script>
+</head>
+<body>
+    
+    <div id="index">
+        <h1>Welcome to BocaJS Developer Game Day 2020</h1>
+       <P>
+        <label for="name">What's your Name? It MUST match Zoom name!)</label><BR />
+        <input type=text id="name" name="name" placeholder="Your Name Here">
+        <div id="nameerror">No really! We need your name on zoom so we know who's buzzing in!</div>
+    </P>
+        <button  class="buzzer" onclick="joingame()">Join Game!</button>
+    </div>
+    <div id="gameplay">
+        <h1> Welcome <span id="nameshown"></span><BR>
+        Buzz that button when you have an answer:</h1>
+        <div id="msg"></div>
+        <center><button class="buzzer" id="buzzButton" onclick="buzz()">BUZZ</button></center>
+    </div>
+<script src="gameplay.js"></script>
+</body>
+</html>

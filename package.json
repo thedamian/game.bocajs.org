@@ -1,0 +1,40 @@
+{
+  "name": "game.bocajs.org",
+  "version": "1.0.0",
+  "description": "Jeopardy Style Developer Games in honor of the great Alex Trebek to be used in Meetups and online using websockets",
+  "main": "game.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon game.js  --ignore game.json",
+    "start": "node game.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thedamian/game.bocajs.org.git"
+  },
+  "keywords": [
+    "Jeopardy",
+    "node",
+    "nodejs",
+    "javascript"
+  ],
+  "author": "Damian Montero",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/thedamian/game.bocajs.org/issues"
+  },
+  "homepage": "https://github.com/thedamian/game.bocajs.org#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "helmet": "^4.2.0",
+    "https": "^1.0.0",
+    "lowdb": "^1.0.0",
+    "morgan": "^1.10.0",
+    "path": "^0.12.7",
+    "shortid": "^2.2.16",
+    "socket.io": "^3.0.0"
+  }
+}

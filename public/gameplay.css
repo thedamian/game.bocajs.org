@@ -1,0 +1,39 @@
+#gameplay {
+    display:none;
+}
+
+#nameerror {
+    color: red;
+    display:none;
+}
+
+.buzzer {
+    position: relative;
+    display: inline-block;
+    padding: 0 60px !important;
+    width: 80%;
+    margin: 0 auto;
+    outline: none;
+    border: none;
+    background: #1d9650;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 1em;
+    font-family: 'Press Start 2P', cursive;
+    transform: perspective(400px) rotateX(6deg);
+    line-height: 4;
+    padding: 0;
+    overflow: visible;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    cursor: pointer;
+    border-radius: 6px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
+    transition: color .1s ease-in .1s, transform .185s ease-in, box-shadow .15s ease-in;
+  }
+
+  #buzzButton {
+    height: 300px;
+    background: #f00;
+  }
