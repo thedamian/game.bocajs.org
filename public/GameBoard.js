@@ -34,18 +34,38 @@ socket.on("buzzed",(BuzzedName) => {
 
 const GameData = {
   Categories : [
-    'Category 1',
-    'Category 2',
-    'Category 3',
-    'Category 4',
-    'Category 5'
+    'Programming',
+    'Vanilla JS',
+    'Angular',
+    'ReactJS',
+    'CSS'
   ],
   Questios: [
-    {value: 100,Answers: ["Answer for $100 1","Answer for $100 2","Answer for $100 3", "Answer for $100 4","Answer for $100 5"]},
-    {value: 200,Answers: ["Answer for $200 1","Answer for $200 2","Answer for $200 3", "Answer for $200 4","Answer for $100 5"]},
-    {value: 300,Answers: ["Answer for $300 1","Answer for $300 2","Answer for $300 3", "Answer for $300 4","Answer for $100 5"]},
-    {value: 400,Answers: ["Answer for $400 1","Answer for $400 2","Answer for $400 3", "Answer for $400 4","Answer for $100 5"]},
-    {value: 500,Answers: ["Answer for $500 1","Answer for $500 2","Answer for $500 3", "Answer for $500 4","Answer for $100 5"]},
+    {value: 100,Answers: ["This is a condition where 3 comes before 1"            
+    ,"This is the best Javascript Meetup group in Florida"                                
+    ,"This is the name of what the old Angular was called until 2.0"
+    ,"This is the company that create ReactJS"
+    ,"This is how we select an DIV by ID"]},
+    {value: 200,Answers: ["This is a loop that comes after 3"                     
+    ,"This is the most popular JS Library. Even today."
+    ,"This is the company that created Angular"
+    ,"This is the combination of JS, CSS and HTML used in ReactJS"
+    ,"This is how we select an DIV by CLASS"]},
+    {value: 300,Answers: ["This is the degree you don't need in programming"      
+    ,"This is how you answer how to add two numbers in jQuery"
+    ,"This is what MVC in Angular stands for"
+    ,"This is the NEW way to fetch a API in React"
+    ,"This is how we center the content of a div"]},
+    {value: 400,Answers: ["This is a type of 'plant' that's made of zeros and one"
+    ,"This is the ES6 way to 'Iterate' through an Array"
+    ,"This is the type of class we use to connect to APIs"
+    ,"Answer for $400 React"
+    ,"Answer for $400 CSS"]},
+    {value: 500,Answers: ["What is the worst Question a programmer can be asked"  
+    ,"This is the difference between i++ and ++i"             
+    ,"Answer for $500 Angular"
+    ,"Answer for $500 React"
+    ,"Answer for $100 CSS"]},
   ]
 }
   
