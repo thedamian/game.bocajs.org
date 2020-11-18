@@ -59,13 +59,13 @@ const GameData = {
     {value: 400,Answers: ["This is a type of 'plant' that's made of zeros and one"
     ,"This is the ES6 way to 'Iterate' through an Array"
     ,"This is the type of class we use to connect to APIs"
-    ,"Answer for $400 React"
-    ,"Answer for $400 CSS"]},
+    ,"This is what Higher Order Component (HOC) are."
+    ,"This is the CSS layout that rhymes with fox"]},
     {value: 500,Answers: ["What is the worst Question a programmer can be asked"  
     ,"This is the difference between i++ and ++i"             
     ,"Answer for $500 Angular"
-    ,"Answer for $500 React"
-    ,"Answer for $100 CSS"]},
+    ,"This is the difference between state and props"
+    ,"This is a basic part of CSS animation"]},
   ]
 }
   
