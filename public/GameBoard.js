@@ -49,7 +49,7 @@ function addBuzzer(BuzzedName,score,WinnerDivs) {
         } else {
             console.log("winnerInfo",winnerInfo);
             socket.emit('winnerChosen',winnerInfo);
-            Players.push(winnerInfo);
+            addwinner(winnerInfo);
             // back to game board
             for(let i=0;i< tiles.length;i++) {
               tiles[i].classList.remove('active');
@@ -57,6 +57,18 @@ function addBuzzer(BuzzedName,score,WinnerDivs) {
             InAnswer = false;
         }
       });
+}
+
+function addwinner(winnerInfo) {
+  let winnerChosen = false;
+  Players.map(p=> {
+      if (winnerInfo.name == p.name) {
+        p.score += winnerInfo.score;
+      }
+  })
+  if (!winnerChosen) {
+      Players.push(winnerInfo);
+  }
 }
 
 
@@ -131,7 +143,7 @@ function getRank() {
     Players.sort((a,b) => b.score - a.score);
 
     Players.map(p=> {
-      rankTile.innerHTML = p.name + ":" + p.score + "<BR />";
+      rankTile.innerHTML += p.name + ":" + p.score + "<BR />";
     })
   }
   
