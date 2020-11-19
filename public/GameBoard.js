@@ -64,6 +64,7 @@ function addwinner(winnerInfo) {
   Players.map(p=> {
       if (winnerInfo.name == p.name) {
         p.score += winnerInfo.score;
+        winnerChosen = true;
       }
   })
   if (!winnerChosen) {
