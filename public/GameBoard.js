@@ -2,34 +2,62 @@ const socket = io();
 let buzzedNames = [];
 let InAnswer = false;
 let AllWinnerDivs = document.getElementsByClassName("winner");
-const ShowQuestion = (e) => {
-  if(e.className == 'tile active') {
-    InAnswer = false;
-    e.className = 'tile';
-    buzzedNames = [];
-    for (let i=0; i<AllWinnerDivs.length;i++) {
-      AllWinnerDivs[i].innerHTML ="";
-    }
-    console.log("buzzers reset")
-  } else {
-    InAnswer = true;
-    e.className = 'tile active';
-    socket.emit("nextQuestion");
-    e.firstChild.innerHTML = "&nbsp;"
-  }
-}
+let tiles = document.getElementsByClassName("tile");
+let abc = {};
+let Players = [];
+
 
 // On Winner:
 
-socket.on("buzzed",(BuzzedName) => {
-  if (InAnswer && !buzzedNames.includes(BuzzedName))
+socket.on("buzzedFirst",(BuzzedName) => {
+  console.log("BuzzedName",BuzzedName)
+  if (InAnswer) // && !buzzedNames.includes(BuzzedName))
   {
-    buzzedNames.push(BuzzedName)
+    //console.log("inside")
+    //buzzedNames.push(BuzzedName)
     for (let i=0; i<AllWinnerDivs.length;i++) {
-      AllWinnerDivs[i].innerHTML +=BuzzedName + "<BR />";
+      abc = AllWinnerDivs[i];
+      if (AllWinnerDivs[i].parentElement.parentElement.classList.contains('active'))
+      {
+        let score = Number(AllWinnerDivs[i].getAttribute("value"));
+        console.log(score)
+        addBuzzer(BuzzedName,score,AllWinnerDivs[i]);
+        addBuzzer('😞',score, AllWinnerDivs[i]);
+      }
     }
   }
 });
+
+
+
+function addBuzzer(BuzzedName,score,WinnerDivs) {
+  let BuzznerNameDiv = document.createElement("div");
+      BuzznerNameDiv.innerHTML += BuzzedName ;
+      BuzznerNameDiv.className = "buzzerName"
+      WinnerDivs.appendChild(BuzznerNameDiv);
+      BuzznerNameDiv.addEventListener("click", (e) => { 
+        e.preventDefault();
+        let winnerInfo = {name: BuzzedName, score: score};
+          //erase all winners
+          for (let i=0; i<AllWinnerDivs.length;i++) {
+            AllWinnerDivs[i].innerHTML ="";
+          }
+
+        if ( BuzzedName == "😞") {
+          socket.emit("nextQuestion");
+          InAnswer = true;
+        } else {
+            console.log("winnerInfo",winnerInfo);
+            socket.emit('winnerChosen',winnerInfo);
+            Players.push(winnerInfo);
+            // back to game board
+            for(let i=0;i< tiles.length;i++) {
+              tiles[i].classList.remove('active');
+            }
+            InAnswer = false;
+        }
+      });
+}
 
 
 const GameData = {
@@ -73,12 +101,41 @@ const GameData = {
   // setup the board
 const categories =  document.getElementById("categories");
 
+let madeRank = false;
 GameData.Categories.map((category) => {
   let Category = document.createElement("div");
   Category.classList.add("tile");
   Category.innerHTML = category;
+  if (!madeRank) {
+    Category.setAttribute("id","rank");
+    categories.setAttribute("onclick","getRank()");
+    madeRank = false;
+  }
   categories.appendChild(Category);
 });
+
+
+let categoeryName1 = ""
+function getRank() {
+  let rankTile = document.getElementById("rank");
+  if (categoeryName1 != "") {
+    // reset the board
+    rankTile.classList.remove("active");
+    rankTile.innerHTML = categoeryName1;
+    categoeryName1 = "";
+  } else {
+    // Show our rank
+    categoeryName1 = rankTile.innerHTML;
+    rankTile.classList.add("active");
+    rankTile.innerHTML = "";
+    Players.sort((a,b) => b.score - a.score);
+
+    Players.map(p=> {
+      rankTile.innerHTML = p.name + ":" + p.score + "<BR />";
+    })
+  }
+  
+}
 
 // Questions
 const boardDiv = document.getElementById("board");
@@ -89,7 +146,7 @@ GameData.Questios.map((question) => {
   question.Answers.map((answer) => {
     let AnswerDiv = document.createElement("div");
     AnswerDiv.classList.add("tile");
-    AnswerDiv.setAttribute("onclick",'ShowQuestion(this)');
+    //AnswerDiv.setAttribute("onclick",'ShowQuestion(this)');
 
       let QuestionValue = document.createElement("div");
       QuestionValue.classList.add("question-value");
@@ -102,6 +159,7 @@ GameData.Questios.map((question) => {
 
       let WinnerDiv = document.createElement('div');
       WinnerDiv.classList.add("winner");
+      WinnerDiv.setAttribute("value",question.value);
       QuestionAnswer.appendChild(WinnerDiv);
 
       AnswerDiv.appendChild(QuestionAnswer);
@@ -114,5 +172,26 @@ GameData.Questios.map((question) => {
 
 });
 
+//readd the latest tiles
+tiles = document.getElementsByClassName("tile");
+ for(let i=0;i< tiles.length;i++) {
+  tiles[i].addEventListener("click", (e) => {
+    e.preventDefault();
+    let tile = e.target;
+    if(!tile.classList.contains('tile')) {
+      tile = tile.parentElement;
+      if(!tile) { 
+        return;
+      }
+    }
+    console.log(tile);
+    if(!tile.classList.contains('active')) {
+      InAnswer = true;
+      tile.classList.add('active');
+      socket.emit("nextQuestion");
+      tile.firstChild.innerHTML = "&nbsp;"
+    }
+  });
+ }
 
 

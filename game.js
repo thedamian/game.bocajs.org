@@ -68,7 +68,7 @@ io.on('connection', (socket) => {
         console.log("new player:",PlayerName)
         if (PlayerName) {
             socket.emit("welcome",PlayerName);
-            Players.push({id: socket.id, name: PlayerName});
+            Players.push({id: socket.id, name: PlayerName,score:0});
             console.log(Players)
         }
     });
@@ -80,6 +80,18 @@ io.on('connection', (socket) => {
         BuzzedFirst = [];
     })
 
+    socket.on('winnerChosen', (winnerInfo) => {
+        io.emit('newWinner',winnerInfo);
+        Players.map(p=> {
+            if (p.name == winnerInfo.name) {
+                p.score += winnerInfo.score;
+            }
+        });
+    });
+
+    socket.on('getPlayers',()=> {
+        socket.emit("getPlayers",Players);
+    });
 
 
     socket.on('buzz', (playerName) => {

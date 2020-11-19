@@ -78,3 +78,8 @@
 .question-answer {
   text-align: center;
 } 
+
+.buzzerName {
+  display: inline-block;
+  margin-right: 150px;
+}
