@@ -100,15 +100,19 @@ const GameData = {
     {value: 400,Answers: ["This is a type of 'plant' that's made of zeros and one"
     ,"This is the ES6 way to 'Iterate' through an Array"
     ,"This is the type of class we use to connect to APIs"
-    ,"This is what Higher Order Component (HOC) are."
+    ,"This is one of the common react hooks"
     ,"This is the CSS layout that rhymes with fox"]},
     {value: 500,Answers: ["What is the worst Question a programmer can be asked"  
     ,"This is the difference between i++ and ++i"             
     ,"Answer for $500 Angular"
-    ,"This is the difference between state and props"
+    ,"This is what Higher Order Component (HOC) are."
     ,"This is a basic part of CSS animation"]},
   ]
 }
+
+// What is the difference between state and props
+// one is a variable passed down 
+
   
 
   // setup the board

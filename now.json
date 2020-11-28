@@ -1,0 +1,19 @@
+{
+    "version": 2,
+    "name": "bocajs",
+    "builds": [
+      {
+        "src": "game.js",
+        "use": "@now/node"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/.*",
+        "dest": "/game.js"
+      }
+    ],
+    "alias": [
+      "basicExpressBoilerplate"
+    ]
+  }
