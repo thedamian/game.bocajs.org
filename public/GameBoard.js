@@ -104,7 +104,7 @@ const GameData = {
     ,"This is the CSS layout that rhymes with fox"]},
     {value: 500,Answers: ["What is the worst Question a programmer can be asked"  
     ,"This is the difference between i++ and ++i"             
-    ,"Answer for $500 Angular"
+    ,"This is one of the standard Lifecycle Hooks "
     ,"This is what Higher Order Component (HOC) are."
     ,"This is a basic part of CSS animation"]},
   ]
